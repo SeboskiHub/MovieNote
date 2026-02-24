@@ -11,22 +11,46 @@ El contenido visual (posters) será el protagonista principal.
 
 ### Colores Principales
 
-- **Primario (Acciones principales):** #2563EB (Azul vibrante)
-- **Secundario (Acentos):** #9333EA (Violeta moderno)
-- **Fondo General:** #0F172A (Azul oscuro estilo streaming)
-- **Tarjetas:** #1E293B (Gris azulado oscuro)
-- **Texto Principal:** #F1F5F9 (Blanco suave)
-- **Texto Secundario:** #94A3B8 (Gris claro)
-- **Error/Eliminar:** #DC2626 (Rojo suave)
+- **Primario (Acciones principales):** #5127b4 (Violeta moderno)
+- **Secundario (Acentos):** #320352 (Morado futurista)
+- **Fondo General:** #0B0B0F (Negro profundo espacial)
+- **Tarjetas:** #111827 (Gris oscuro elegante)
+- **Texto Principal:** #F9FAFB (Blanco suave)
+- **Texto Secundario:** #9CA3AF (Gris neutro)
+- **Error/Eliminar:** #EF4444 (Rojo suave)
 
 ---
 
+
+## Efectos visuales
+
+--**Glow/ Hover primario:** rgba (139, 92, 246, 0.35)
+--**Tarjetas Hover:** #1F2933
+--**Texto Desactivado:** #6B7280
+--**Éxito / Confirmación:** #22C55E
+
+## Fondo / Ambientación 
+
+--**Color base:** #0B0B0F (Negro profundo espacial)
+--**Estilo:** Oscuro cinematográfico / espacial
+--**Efecto:** Estrellas sutiles
+--**Animación:** Movimiento lento y suave
+
+El fondo debe aportar profundidad visual sin distraer del contenido principal.
+
+**Lineamientos:**
+
+-Las estrellas deben ser pequeñas y de baja opacidad.
+-El movimiento debe ser sutil y elegante.
+-No debe generar ruido visual.
+
+
 ## Tipografía
 
-- **Fuente Principal:** 'Inter', sans-serif.
-- **Alternativa:** 'Roboto', sans-serif.
-- **Encabezados:** Bold.
-- **Texto normal:** Regular.
+- **Fuente Principal:** Bebas Neue
+- **Alternativa:** Playfair Display
+- **Encabezados:** Spectral
+- **Texto normal:** Yanone Kaffeesatz
 - **Tamaño base:** 16px.
 
 ---
@@ -34,17 +58,21 @@ El contenido visual (posters) será el protagonista principal.
 ## Componentes UI
 
 ### 1. Tarjetas (Movie Cards)
-- Fondo oscuro (#1E293B).
-- Bordes redondeados (8px).
-- Sombra ligera.
-- Efecto hover: ligera elevación (transform: translateY(-5px)).
+- **Fondo oscuro:** #111827
+- **Bordes redondeados:**(10px).
+- **Sombra:** Ligera.
+- **Efecto hover:** Ligera elevación (transform: translateY(-5px)).
+- **Glow:** Violeta suave.
+- **Escala sútil:** scale(1.02)
 
 ### 2. Botones
-- Border-radius: 6px.
-- Padding amplio.
-- Transición suave (0.3s).
-- Botón principal: azul.
-- Botón eliminar: rojo.
+- **Border-radius:** 8px.
+- **Padding:** Amplio.
+- **Transición:** Suave (0.3s).
+- **Botón principal:** Violeta.
+- **Botón eliminar:** Rojo.
+- **Glow:** Suave.
+- **Brillo:** Ligero.
 
 ### 3. Inputs (Notas del usuario)
 - Fondo ligeramente más claro que las tarjetas.
