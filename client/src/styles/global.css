@@ -1,0 +1,24 @@
+@import "./variables.css";
+
+*{
+    box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: sans-serif;
+  background-color: var(--color-bg);
+  color: var(--color-text);
+}
+
+button {
+  cursor: pointer;
+  border: none;
+  padding: 10px 16px;
+  border-radius: 8px;
+  transition: var(--transition);
+}
+
+button:hover {
+  opacity: 0.9;
+}

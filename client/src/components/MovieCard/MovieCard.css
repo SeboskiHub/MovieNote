@@ -1,0 +1,21 @@
+.movie-card {
+  background-color: var(--color-card);
+  border-radius: var(--radius);
+  padding: 10px;
+  transition: var(--transition);
+  text-align: center;
+}
+
+.movie-card:hover {
+  transform: translateY(-5px) scale(1.02);
+  box-shadow: 0 0 15px rgba(139, 92, 246, 0.35);
+}
+
+.movie-card img {
+  width: 100%;
+  border-radius: var(--radius);
+}
+
+.movie-card h3 {
+  margin: 10px 0 5px;
+}

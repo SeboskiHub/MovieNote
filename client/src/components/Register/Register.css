@@ -1,0 +1,19 @@
+/* Register-specific additions */
+
+/* Mismatch state for confirm password */
+.auth-input--mismatch {
+  border-color: rgba(239, 68, 68, 0.5);
+  background: rgba(239, 68, 68, 0.05);
+}
+
+.auth-input--mismatch:focus {
+  border-color: var(--color-danger);
+  box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.18);
+}
+
+/* Inline hint below field */
+.auth-hint {
+  font-size: 0.78rem;
+  color: #fca5a5;
+  margin-top: -0.15rem;
+}
