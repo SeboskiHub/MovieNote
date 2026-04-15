@@ -5,9 +5,9 @@ export function Landing() { // Componente principal de la pantalla inicial
   const navigate = useNavigate(); // Creamos la función que nos permite redirigir a otras rutas
 
   return (
-    <div className="landing"> {}
+    <div className="landing"> 
 
-      <h1> MovieNote </h1> {}
+      <h1> MovieNote </h1> 
 
       <p>Las películas no solo se ven, se sienten.
         Movie Note te permite guardar cada emoción para que puedas volver a ellas cuando lo necesites.</p> {}
