@@ -1,4 +1,5 @@
 /* Contenedor de botones */
+
 .emotion-container {
   display: flex;
   flex-wrap: wrap;
@@ -6,6 +7,7 @@
 }
 
 /* Botón base */
+
 .emotion-button {
   padding: 8px 16px;
   border-radius: 12px;
@@ -17,14 +19,16 @@
 }
 
 /* Hover */
+
 .emotion-button:hover {
   background-color: #f3f4f6;
 }
 
 /* Estado activo */
+
 .emotion-button.active {
-  background-color: #a855f7;
+  background-color: #2a0052;
   color: white;
-  border-color: #a855f7;
+  border-color: #734d96;
   transform: scale(1.05);
 }
