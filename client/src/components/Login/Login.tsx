@@ -18,7 +18,7 @@ export function Login() {
     setLoading(true);
     try {
       await login(email, password);
-      navigate("/");
+      navigate("/home");
     } catch (err: unknown) {
       const msg = err instanceof Error ? err.message : "Error al iniciar sesión";
       setError(parseFirebaseError(msg));
