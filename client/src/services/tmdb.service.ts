@@ -28,3 +28,19 @@ export const getPopularTV = async (page: number): Promise<TVShow[]> => {
   const data: TMDBResponse<TVShow> = await response.json();
   return data.results;
 };
+
+export const searchMovies = async (query: string, page: number): Promise<Movie[]> => {
+  const url = `${BASE_URL}/search/movie?api_key=${API_KEY}&language=es-ES&query=${encodeURIComponent(query)}&page=${page}`;
+  const response = await fetch(url);
+  if (!response.ok) throw new Error("Error al buscar películas");
+  const data: TMDBResponse<Movie> = await response.json();
+  return data.results;
+};
+
+export const searchTV = async (query: string, page: number): Promise<TVShow[]> => {
+  const url = `${BASE_URL}/search/tv?api_key=${API_KEY}&language=es-ES&query=${encodeURIComponent(query)}&page=${page}`;
+  const response = await fetch(url);
+  if (!response.ok) throw new Error("Error al buscar series");
+  const data: TMDBResponse<TVShow> = await response.json();
+  return data.results;
+};

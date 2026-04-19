@@ -1,3 +1,4 @@
+import { useNavigate } from "react-router-dom";
 import { useMovies } from "../hooks/useMovies";
 import { useAuth } from "../hooks/useAuth";
 import { MovieCard } from "../components/MovieCard/MovieCard";
@@ -5,8 +6,14 @@ import { Grid } from "../components/Grid/Grid";
 import "../App.css";
 
 function Home() {
-  const { mode, setMode, movies, tvShows, page, setPage } = useMovies();
+  const { mode, setMode, movies, tvShows, page, setPage, query, setQuery } = useMovies();
   const { user, logout } = useAuth();
+  const navigate = useNavigate();
+
+  const handleLogout = async () => {
+    await logout();
+    navigate("/");
+  };
 
   const isMovies = mode === "movies";
 
@@ -20,28 +27,52 @@ function Home() {
         </div>
         <div className="app-header__right">
           <span className="app-header__email">{user?.email}</span>
-          <button id="logout-btn" className="app-header__logout" onClick={logout}>
+          <button id="logout-btn" className="app-header__logout" onClick={handleLogout}>
             Cerrar sesión
           </button>
         </div>
       </header>
 
-      {/* Mode toggle */}
-      <div className="app-tabs">
-        <button
-          id="tab-movies"
-          className={`app-tab ${isMovies ? "app-tab--active" : ""}`}
-          onClick={() => setMode("movies")}
-        >
-          Películas
-        </button>
-        <button
-          id="tab-tv"
-          className={`app-tab ${!isMovies ? "app-tab--active" : ""}`}
-          onClick={() => setMode("tv")}
-        >
-          Series
-        </button>
+      {/* Search + Tabs */}
+      <div className="app-controls">
+        <div className="app-search">
+          <span className="app-search__icon">🔍</span>
+          <input
+            id="search-input"
+            className="app-search__input"
+            type="text"
+            placeholder={isMovies ? "Buscar películas..." : "Buscar series..."}
+            value={query}
+            onChange={(e) => setQuery(e.target.value)}
+          />
+          {query && (
+            <button
+              className="app-search__clear"
+              onClick={() => setQuery("")}
+              aria-label="Limpiar búsqueda"
+            >
+              ✕
+            </button>
+          )}
+        </div>
+
+        {/* Mode toggle */}
+        <div className="app-tabs">
+          <button
+            id="tab-movies"
+            className={`app-tab ${isMovies ? "app-tab--active" : ""}`}
+            onClick={() => setMode("movies")}
+          >
+            Películas
+          </button>
+          <button
+            id="tab-tv"
+            className={`app-tab ${!isMovies ? "app-tab--active" : ""}`}
+            onClick={() => setMode("tv")}
+          >
+            Series
+          </button>
+        </div>
       </div>
 
       {/* Grid */}
