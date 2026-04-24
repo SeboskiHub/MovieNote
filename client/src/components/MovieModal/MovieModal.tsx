@@ -1,4 +1,6 @@
 import "./MovieModal.css";
+import { useState } from "react";
+import { Notes } from "../Notes/notes";
 
 type Props = {
   movie: any;
@@ -6,6 +8,10 @@ type Props = {
 };
 
 export function MovieModal({ movie, onClose }: Props) {
+
+  // Estado para mostrar Notes
+  const [showNotes, setShowNotes] = useState(false);
+
   return (
     <div className="modal-overlay" onClick={onClose}>
 
@@ -14,6 +20,7 @@ export function MovieModal({ movie, onClose }: Props) {
         onClick={(e) => e.stopPropagation()}
       >
         {/* Botón cerrar */}
+        
         <button className="close-btn" onClick={onClose}>
           ✕
         </button>
@@ -27,12 +34,28 @@ export function MovieModal({ movie, onClose }: Props) {
 
         <p>{movie.overview}</p>
 
-        <h3>$ 20.000</h3> 
+        <h3>$ 20.000</h3>
 
         <div className="modal-actions">
-          <button>Agregar nota</button>
-          <button>Agregar al carrito</button>
+
+        
+          <button onClick={() => setShowNotes(true)}>
+            Agregar nota
+          </button>
+
+          <button>
+            Agregar al carrito
+          </button>
+
         </div>
+
+  
+        {showNotes && (
+          <Notes
+            movie={movie}
+            onClose={() => setShowNotes(false)}
+          />
+        )}
 
       </div>
     </div>
