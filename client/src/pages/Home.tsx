@@ -3,6 +3,7 @@ import { useMovies } from "../hooks/useMovies";
 import { useAuth } from "../hooks/useAuth";
 import { MovieCard } from "../components/MovieCard/MovieCard";
 import { Grid } from "../components/Grid/Grid";
+import { Navbar } from "../components/Navbar/Navbar";
 import "../App.css";
 
 function Home() {
@@ -19,19 +20,7 @@ function Home() {
 
   return (
     <>
-      {/* Header */}
-      <header className="app-header">
-        <div className="app-header__left">
-          <span className="app-header__logo">🎬</span>
-          <h1 className="app-header__title">{isMovies ? "Películas" : "Series"}</h1>
-        </div>
-        <div className="app-header__right">
-          <span className="app-header__email">{user?.email}</span>
-          <button id="logout-btn" className="app-header__logout" onClick={handleLogout}>
-            Cerrar sesión
-          </button>
-        </div>
-      </header>
+      <Navbar />
 
       {/* Search + Tabs */}
       <div className="app-controls">
