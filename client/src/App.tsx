@@ -7,6 +7,7 @@ import Home from "./pages/Home";
 import MisNotas from "./pages/MisNotas/MisNotas";
 import { Checkout } from "./pages/Checkout/Checkout";
 import { PurchasesHistory } from "./pages/PurchasesHistory/PurchasesHistory";
+import { ProtectedRoute } from "./components/ProtectedRoute/ProtectedRoute";
 import { CartSidebar } from "./components/CartSidebar/CartSidebar";
 import { CartProvider } from "./context/CartContext";
 
@@ -22,9 +23,14 @@ function App() {
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
           <Route path="/home" element={<Home />} />
-          <Route path="/notes" element={<MisNotas />} />
-          <Route path="/checkout" element={<Checkout />} />
-          <Route path="/history" element={<PurchasesHistory />} />
+          
+          {/* 🛡️ Protected Private Routes */}
+          <Route element={<ProtectedRoute />}>
+            <Route path="/notes" element={<MisNotas />} />
+            <Route path="/checkout" element={<Checkout />} />
+            <Route path="/history" element={<PurchasesHistory />} />
+          </Route>
+          
         </Routes>
       </BrowserRouter>
     </CartProvider>
