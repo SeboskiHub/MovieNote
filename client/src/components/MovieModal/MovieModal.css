@@ -1,123 +1,303 @@
-.modal-overlay{
+/* ───────────────────────────────────────────
+   Overlay
+─────────────────────────────────────────── */
+.modal-overlay {
   position: fixed;
   inset: 0;
-  background: rgba(0,0,0,.85);
+  background: rgba(0, 0, 0, 0.75);
+  backdrop-filter: blur(6px);
 
-  display:flex;
-  justify-content:center;
-  align-items:center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 
-  z-index:999;
+  z-index: 1100;
+  padding: 16px;
+
+  /* Fade-in */
+  animation: overlayIn 0.25s ease forwards;
 }
 
-.modal{
-  background:#111;
-  color:white;
-
-  width:380px;
-  max-height:85vh;
-
-  padding:18px;
-  border-radius:16px;
-
-  overflow-y:auto;
-  scrollbar-width:none; 
-
-  position:relative;
+@keyframes overlayIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
 }
 
-.modal::-webkit-scrollbar{
-  display:none;
-}
+/* ───────────────────────────────────────────
+   Modal card
+─────────────────────────────────────────── */
+.modal {
+  position: relative;
 
-.modal img{
-  width:100%;
-  height:320px;
-  object-fit:contain;
-  border-radius:5px;
-  margin-bottom:0px;
-}
-
-.modal h2{
-  font-size:1.8rem;
-  margin-bottom:12px;
-}
-
-.modal p{
-  font-size:0.95rem;
-  color:#ddd;
-  line-height:1.4;
-}
-
-.modal h3{
-  margin-top:15px;
-  font-size:1.5rem;
-  color:#ffffff;
-}
-
-.close-btn{
-  position: sticky;
-  top: 0;
-
-  margin-left: auto;
-
-  width:40px;
-  height:40px;
-
-  border:none;
-  border-radius:50%;
-
-  background:#ef4444;
-  color:white;
-  font-size:20px;
-  cursor:pointer;
-
-  display:flex;
-  justify-content:center;
-  align-items:center;
-
-  z-index:20;
-}
-
-.close-btn:hover{
- 
-   background:#3a3ac7;
-  transform: translateY(-5px);
-
-  background: linear-gradient(135deg, #7c3aed, #2563eb);
-
+  background: linear-gradient(160deg, #0f0f23 0%, #12122a 60%, #0a0a1a 100%);
+  border: 1px solid rgba(124, 58, 237, 0.3);
+  border-radius: 24px;
   box-shadow:
-    0 0 10px rgba(124, 58, 237, 0.6),
-    0 0 20px rgba(37, 99, 235, 0.4);
+    0 0 0 1px rgba(255,255,255,0.04),
+    0 25px 60px rgba(0, 0, 0, 0.7),
+    0 0 80px rgba(124, 58, 237, 0.12);
+
+  width: 100%;
+  max-width: 860px;
+  max-height: 92vh;
+  overflow-y: auto;
+  scrollbar-width: none;
+
+  /* Slide-up + scale in */
+  animation: modalIn 0.32s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
 }
 
-.modal-actions button{
-  flex:1;
+.modal::-webkit-scrollbar { display: none; }
+
+@keyframes modalIn {
+  from {
+    opacity: 0;
+    transform: translateY(40px) scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+/* ───────────────────────────────────────────
+   Close button
+─────────────────────────────────────────── */
+.close-btn {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  z-index: 10;
+
+  width: 38px;
+  height: 38px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border: none;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.08);
+  color: rgba(255,255,255,0.7);
+  font-size: 16px;
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s, transform 0.2s;
+  backdrop-filter: blur(4px);
+}
+
+.close-btn:hover {
+  background: rgba(239, 68, 68, 0.75);
+  color: #fff;
+  transform: rotate(90deg) scale(1.1);
+}
+
+/* ───────────────────────────────────────────
+   Body layout (two columns)
+─────────────────────────────────────────── */
+.modal-body {
+  display: grid;
+  grid-template-columns: 260px 1fr;
+  gap: 0;
+  min-height: 380px;
+}
+
+/* ───────────────────────────────────────────
+   Poster
+─────────────────────────────────────────── */
+.modal-poster-wrap {
+  position: relative;
+  border-radius: 24px 0 0 24px;
+  overflow: hidden;
+  flex-shrink: 0;
+}
+
+.modal-poster {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  min-height: 380px;
+}
+
+/* right-side gradient fade */
+.modal-poster-scrim {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to right,
+    transparent 55%,
+    #0f0f23 100%
+  );
+}
+
+/* ───────────────────────────────────────────
+   Info panel
+─────────────────────────────────────────── */
+.modal-info {
+  padding: 36px 32px 32px 28px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  overflow: hidden;
+}
+
+.modal-title {
+  font-size: 1.75rem;
+  font-weight: 800;
+  color: #fff;
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+  /* Gradient text */
+  background: linear-gradient(135deg, #e2d9f3, #c4b5fd, #818cf8);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* ── Badges ── */
+.modal-badges {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.badge {
+  display: inline-flex;
+  align-items: center;
   gap: 5px;
-  padding:12px;
-  border:none;
-  border-radius:12px;
-  background:#2b2b8f;
-  color:white;
-  font-weight:bold;
-  cursor:pointer;
-  transition:.3s;
+  padding: 5px 12px;
+  border-radius: 999px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
 }
 
-.modal-actions{
-  display:flex;
-  gap:16px;
-  margin-top:20px;
+.badge--rating {
+  background: rgba(250, 204, 21, 0.12);
+  color: #fde68a;
+  border: 1px solid rgba(250, 204, 21, 0.25);
 }
 
-.modal-actions button:hover{
-  background:#3a3ac7;
-  transform: translateY(-5px);
-
-  background: linear-gradient(135deg, #7c3aed, #2563eb);
-
-  box-shadow:
-    0 0 10px rgba(124, 58, 237, 0.6),
-    0 0 20px rgba(37, 99, 235, 0.4);
+.badge--year {
+  background: rgba(99, 102, 241, 0.12);
+  color: #a5b4fc;
+  border: 1px solid rgba(99, 102, 241, 0.25);
 }
 
+.badge--price {
+  background: rgba(52, 211, 153, 0.1);
+  color: #6ee7b7;
+  border: 1px solid rgba(52, 211, 153, 0.2);
+}
+
+/* ── Overview ── */
+.modal-overview {
+  font-size: 0.9rem;
+  color: rgba(255,255,255,0.65);
+  line-height: 1.65;
+  flex: 1;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 7;
+  -webkit-box-orient: vertical;
+}
+
+/* ───────────────────────────────────────────
+   Action buttons
+─────────────────────────────────────────── */
+.modal-actions {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-top: auto;
+}
+
+.modal-btn {
+  flex: 1;
+  min-width: 140px;
+  padding: 13px 18px;
+  border: none;
+  border-radius: 14px;
+  font-size: 0.88rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease, opacity 0.2s;
+  letter-spacing: 0.02em;
+}
+
+.modal-btn--note {
+  background: linear-gradient(135deg, #4f46e5, #7c3aed);
+  color: #fff;
+  box-shadow: 0 4px 20px rgba(124, 58, 237, 0.35);
+}
+
+.modal-btn--note:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 28px rgba(124, 58, 237, 0.55);
+}
+
+.modal-btn--cart {
+  background: rgba(255,255,255,0.06);
+  color: rgba(255,255,255,0.85);
+  border: 1px solid rgba(255,255,255,0.12);
+  backdrop-filter: blur(4px);
+}
+
+.modal-btn--cart:hover {
+  background: rgba(255,255,255,0.12);
+  transform: translateY(-3px);
+  border-color: rgba(255,255,255,0.22);
+}
+
+/* ───────────────────────────────────────────
+   Notes panel (inline, inside info column)
+─────────────────────────────────────────── */
+.modal-notes-panel {
+  margin-top: 4px;
+  border-radius: 16px;
+  background: rgba(255,255,255,0.03);
+  border: 1px solid rgba(124, 58, 237, 0.2);
+  overflow: hidden;
+
+  animation: panelIn 0.28s ease forwards;
+}
+
+@keyframes panelIn {
+  from { opacity: 0; transform: translateY(12px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ───────────────────────────────────────────
+   Responsive – stack vertically on mobile
+─────────────────────────────────────────── */
+@media (max-width: 620px) {
+  .modal-body {
+    grid-template-columns: 1fr;
+  }
+
+  .modal-poster-wrap {
+    border-radius: 24px 24px 0 0;
+    max-height: 260px;
+  }
+
+  .modal-poster {
+    min-height: 260px;
+  }
+
+  .modal-poster-scrim {
+    background: linear-gradient(
+      to bottom,
+      transparent 55%,
+      #0f0f23 100%
+    );
+  }
+
+  .modal-info {
+    padding: 24px 20px 24px;
+  }
+
+  .modal-title {
+    font-size: 1.35rem;
+  }
+}

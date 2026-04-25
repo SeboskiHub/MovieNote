@@ -1,6 +1,7 @@
 import "./MovieModal.css";
 import { useState } from "react";
-import { Notes } from "../Notes/notes";
+import { Notes } from "../Notes/Notes";
+import { useCart } from "../../context/CartContext";
 
 type Props = {
   movie: any;
@@ -8,55 +9,92 @@ type Props = {
 };
 
 export function MovieModal({ movie, onClose }: Props) {
-
-  // Estado para mostrar Notes
   const [showNotes, setShowNotes] = useState(false);
+  const { addToCart } = useCart();
+
+  const rating = movie.vote_average ? Number(movie.vote_average).toFixed(1) : null;
+  const year = (movie.release_date || movie.first_air_date || "").slice(0, 4);
+  const posterUrl = movie.poster_path
+    ? `https://image.tmdb.org/t/p/w500${movie.poster_path}`
+    : "https://via.placeholder.com/500x750?text=Sin+imagen";
 
   return (
     <div className="modal-overlay" onClick={onClose}>
+      <div className="modal" onClick={(e) => e.stopPropagation()}>
 
-      <div
-        className="modal"
-        onClick={(e) => e.stopPropagation()}
-      >
-        {/* Botón cerrar */}
-        
-        <button className="close-btn" onClick={onClose}>
+        {/* ── Close button ── */}
+        <button className="close-btn" onClick={onClose} aria-label="Cerrar">
           ✕
         </button>
 
-        <img
-          src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
-          alt={movie.title || movie.name}
-        />
+        {/* ── Body: poster + info ── */}
+        <div className="modal-body">
 
-        <h2>{movie.title || movie.name}</h2>
+          {/* Poster */}
+          <div className="modal-poster-wrap">
+            <img
+              className="modal-poster"
+              src={posterUrl}
+              alt={movie.title || movie.name}
+            />
+            {/* Gradient scrim at bottom of poster */}
+            <div className="modal-poster-scrim" />
+          </div>
 
-        <p>{movie.overview}</p>
+          {/* Info panel */}
+          <div className="modal-info">
 
-        <h3>$ 20.000</h3>
+            <h2 className="modal-title">{movie.title || movie.name}</h2>
 
-        <div className="modal-actions">
+            {/* Badges row */}
+            <div className="modal-badges">
+              {rating && (
+                <span className="badge badge--rating">
+                  ⭐ {rating}
+                </span>
+              )}
+              {year && (
+                <span className="badge badge--year">
+                  📅 {year}
+                </span>
+              )}
+              <span className="badge badge--price">
+                💳 $20.000
+              </span>
+            </div>
 
-        
-          <button onClick={() => setShowNotes(true)}>
-            Agregar nota
-          </button>
+            {/* Overview */}
+            <p className="modal-overview">
+              {movie.overview || "Sin descripción disponible."}
+            </p>
 
-          <button>
-            Agregar al carrito
-          </button>
+            {/* Actions */}
+            {!showNotes && (
+              <div className="modal-actions">
+                <button
+                  className="modal-btn modal-btn--note"
+                  onClick={() => setShowNotes(true)}
+                >
+                  ✏️ Agregar nota
+                </button>
+                <button 
+                  className="modal-btn modal-btn--cart"
+                  onClick={() => addToCart(movie)}
+                >
+                  🛒 Agregar al carrito
+                </button>
+              </div>
+            )}
 
+            {/* Inline Notes panel */}
+            {showNotes && (
+              <div className="modal-notes-panel">
+                <Notes movie={movie} onClose={() => setShowNotes(false)} />
+              </div>
+            )}
+
+          </div>
         </div>
-
-  
-        {showNotes && (
-          <Notes
-            movie={movie}
-            onClose={() => setShowNotes(false)}
-          />
-        )}
-
       </div>
     </div>
   );

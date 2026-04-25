@@ -11,9 +11,22 @@
 
   border-bottom: 1px solid rgba(168, 85, 247, 0.25);
 
-  position: sticky;
+  position: fixed;
   top: 0;
+  left: 0;
+  right: 0;
+  width: 100%;
   z-index: 1000;
+
+  /* Smooth slide animation */
+  transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1),
+              box-shadow 0.35s ease;
+}
+
+/* Hide the navbar by sliding it up */
+.navbar--hidden {
+  transform: translateY(-110%);
+  box-shadow: none;
 }
 
 .navbar-logo {
@@ -72,4 +85,115 @@
 .logout-btn:hover {
   box-shadow:
     0 0 10px rgba(23, 0, 156, 0.5);
+}
+
+.cart-nav-btn {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.cart-badge {
+  position: absolute;
+  top: -6px;
+  right: -8px;
+  background: #ef4444;
+  color: white;
+  font-size: 0.72rem;
+  font-weight: bold;
+  padding: 2px 6px;
+  border-radius: 10px;
+  box-shadow: 0 0 8px rgba(239, 68, 68, 0.6);
+  border: 1px solid #7f1d1d;
+  animation: popIn 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+@keyframes popIn {
+  from { transform: scale(0); }
+  to { transform: scale(1); }
+}
+
+/* User Section & Right Icons */
+.navbar-right {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.navbar-email {
+  color: rgba(255, 255, 255, 0.8);
+  font-size: 0.9rem;
+  font-weight: 500;
+  max-width: 150px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.hamburger-btn {
+  display: none; /* hidden on desktop */
+  background: none;
+  border: none;
+  color: white;
+  font-size: 1.8rem;
+  cursor: pointer;
+  padding: 4px;
+}
+
+/* ── Mobile Responsiveness ── */
+@media (max-width: 860px) {
+  .navbar-email {
+    display: none; /* hide email on smaller screens to save space */
+  }
+}
+
+@media (max-width: 768px) {
+  .hamburger-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .navbar-links {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    flex-direction: column;
+    background: rgba(8, 8, 20, 0.98);
+    backdrop-filter: blur(24px);
+    padding: 20px 35px;
+    border-bottom: 1px solid rgba(168, 85, 247, 0.3);
+    
+    /* Hidden by default on mobile */
+    display: none;
+    transform-origin: top;
+  }
+
+  .navbar-links--open {
+    display: flex;
+    animation: slideMenuDown 0.3s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+  }
+
+  .navbar-links button {
+    width: 100%;
+    text-align: center;
+    padding: 14px;
+    font-size: 1.05rem;
+  }
+
+  .cart-nav-btn {
+    justify-content: center;
+  }
+}
+
+@keyframes slideMenuDown {
+  from {
+    opacity: 0;
+    transform: scaleY(0.9) translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: scaleY(1) translateY(0);
+  }
 }

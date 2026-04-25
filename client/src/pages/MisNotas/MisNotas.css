@@ -1,6 +1,8 @@
 .notes-page{
   min-height:100vh;
   padding:40px;
+  /* padding-top compensates for position:fixed navbar */
+  padding-top: 130px;
   background:linear-gradient(180deg,#050510,#0b0b1f);
   color:white;
 }
