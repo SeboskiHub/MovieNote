@@ -1,6 +1,5 @@
 import { useNavigate } from "react-router-dom"; // Hook que permite navegar entre rutas sin recargar la página
 import LiquidEther from '../services/LiquidEther';
-import Footer from '../components/Footer/Footer';
 import ASCIIText from '../services/ASCIIText';
 import "./Landing.css";
 
