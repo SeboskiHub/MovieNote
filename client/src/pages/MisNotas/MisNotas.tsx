@@ -5,6 +5,7 @@ import { auth } from "../../services/firebase/firebaseConfig";
 import { getUserNotes } from "../../services/notesService/notesService";
 import { emotions } from "../../utils/Emotions";
 import { Navbar } from "../../components/Navbar/Navbar";
+import Footer from "../../components/Footer/Footer";
 
 function MisNotas() {
   const [notes, setNotes] = useState<any[]>([]);
@@ -85,6 +86,8 @@ function MisNotas() {
         </div>
 
       </div>
+
+      <Footer />
     </>
   );
 }

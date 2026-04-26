@@ -17,3 +17,12 @@
   color: #fca5a5;
   margin-top: -0.15rem;
 }
+
+/* ── Footer centering ── */
+.auth-page .footer {
+  width: 100%;
+  max-width: 420px; /* Match auth-card width */
+  margin: 2rem auto 0;
+  padding: 20px 0;
+  text-align: center;
+}

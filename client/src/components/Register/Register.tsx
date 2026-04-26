@@ -1,6 +1,7 @@
 import { useState, type FormEvent } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useAuth } from "../../hooks/useAuth";
+import Footer from "../Footer/Footer";
 import "../Login/Login.css";
 import "./Register.css";
 
@@ -130,6 +131,8 @@ export function Register() {
           </Link>
         </p>
       </div>
+
+      <Footer />
     </div>
   );
 }

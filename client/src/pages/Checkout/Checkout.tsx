@@ -3,6 +3,7 @@ import { useCart } from "../../context/CartContext";
 import { useAuth } from "../../hooks/useAuth";
 import { savePurchase } from "../../services/ordersService/ordersService";
 import { Navbar } from "../../components/Navbar/Navbar";
+import Footer from "../../components/Footer/Footer";
 import "./Checkout.css";
 import { useState } from "react";
 
@@ -109,6 +110,8 @@ export function Checkout() {
           </div>
         </div>
       </div>
+
+      <Footer />
     </>
   );
 }

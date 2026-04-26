@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { Navbar } from "../../components/Navbar/Navbar";
+import Footer from "../../components/Footer/Footer";
 import { useAuth } from "../../hooks/useAuth";
 import { getUserPurchases } from "../../services/ordersService/ordersService";
 import { useNavigate } from "react-router-dom";
@@ -109,6 +110,8 @@ export function PurchasesHistory() {
           )}
         </div>
       </div>
+
+      <Footer />
     </>
   );
 }
