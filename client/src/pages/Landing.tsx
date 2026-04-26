@@ -1,5 +1,6 @@
 import { useNavigate } from "react-router-dom"; // Hook que permite navegar entre rutas sin recargar la página
 import LiquidEther from '../services/LiquidEther';
+import Footer from '../components/Footer/Footer';
 
 export function Landing() { // Componente principal de la pantalla inicial
 
@@ -38,6 +39,7 @@ export function Landing() { // Componente principal de la pantalla inicial
         Empezar
       </button>
 
+      <Footer />
     </div>
   );
 }

@@ -4,6 +4,7 @@ import { MovieCard } from "../components/MovieCard/MovieCard";
 import { Grid } from "../components/Grid/Grid";
 import { Navbar } from "../components/Navbar/Navbar";
 import { MovieModal } from "../components/MovieModal/MovieModal";
+import Footer from "../components/Footer/Footer";
 import "../App.css";
 
 interface Movie {
@@ -127,6 +128,8 @@ function Home() {
           Siguiente →
         </button>
       </div>
+
+      <Footer />
     </>
   );
 }
