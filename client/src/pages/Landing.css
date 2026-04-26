@@ -28,30 +28,29 @@
   backdrop-filter: blur(5px);
 }
 
-.landing h1 {
-  font-size: 3rem;
-  margin-bottom: 20px;
-  margin-top: 0;
-}
-
 .landing p {
-  font-size: 1.2rem;
+  font-size: 1.15rem;
+  line-height: 1.6;
   margin-bottom: 30px;
   color: #cbd5f5;
+  text-shadow: 0 2px 4px rgba(0,0,0,0.5);
 }
 
-.landing button {
-  background: #3b82f6;
+.landing-btn {
+  background: linear-gradient(135deg, #4f46e5, #7c3aed);
   border: none;
-  padding: 12px 25px;
-  border-radius: 10px;
+  padding: 14px 32px;
+  border-radius: 12px;
   color: white;
-  font-size: 1rem;
+  font-weight: 600;
+  font-size: 1.1rem;
   cursor: pointer;
-  transition: all 0.3s ease;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 4px 15px rgba(124, 58, 237, 0.3);
 }
 
-.landing button:hover {
-  background: #2563eb;
-  transform: scale(1.05);
+.landing-btn:hover {
+  transform: translateY(-2px);
+  background: linear-gradient(135deg, #4338ca, #6d28d9);
+  box-shadow: 0 8px 25px rgba(124, 58, 237, 0.5);
 }
